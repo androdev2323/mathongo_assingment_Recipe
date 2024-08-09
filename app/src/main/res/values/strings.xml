@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">mathongo_assingment</string>
+    <string name="Welcome_text">Hey  %1$s </string>
+    <string name="Welcome_message">Discover tasty and healthy recipe </string>
+    <string name="Search_hint">Search any recipe </string>
+    <string name="Popular_recipe">Popular recipe </string>
+    <string name="All_recipe">All recipes </string>
+    <string name="Ready_in">Ready in %1$s minutes</string>
+    <string name="Placeholder_Search">Search any Recipe </string>
+    <string name="Details_ReadyIn">Ready in </string>
+    <string name="Details_Servings">Servings </string>
+    <string name="Details_Price">Price/Serving </string>
+</resources>
