@@ -2,9 +2,11 @@ package com.example.mathongo_assingment.presentation.feature_RecipeDetail
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -20,6 +22,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.mathongo_assingment.R
+import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.Basicdetails
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.ExpandedToolbar
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.collapsedToolbar
 
@@ -36,16 +39,14 @@ fun  RecipeDetail_Screem() {
     }
     Scaffold(
         topBar = {
-            Box(modifier = Modifier.fillMaxWidth()) {
-                if (isCollapsed) {
-                    ExpandedToolbar(scrollBehavior = scrollBehavior)
-                } else {
-             collapsedToolbar(scrollBehavior = scrollBehavior, iscollapsed = isCollapsed )
-                }
+           /* Box(modifier = Modifier.fillMaxWidth()) {
+
             }
+
+            */
         }
     ) {
-paddingValues ->  
+       Basicdetails(modifier = Modifier.padding(it), readyin = "1", servings = "1", price ="1" )
 
     }
 }
