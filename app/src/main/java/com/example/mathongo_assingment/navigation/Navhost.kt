@@ -33,13 +33,17 @@ fun Apphost(){
                 composable(Navscreen.Searchscreen.routes) {
                     Search_Screen(animatedVisibilityScope = this@composable, sharedTransitionScope = this@SharedTransitionLayout)
                 }
-                composable(Navscreen.DetailScreen.routes,
+                composable("${Navscreen.DetailScreen.routes}/${id}",
                     arguments = listOf(navArgument("id"){
                         type= NavType.IntType
                         defaultValue=-1
                     })
                 ){
-                    RecipeDetail_Screem()
+                    navBackstackentry->
+                    navBackstackentry.arguments?.getInt("id").let {
+                        RecipeDetail_Screem()
+                    }
+
                 }
             }
 

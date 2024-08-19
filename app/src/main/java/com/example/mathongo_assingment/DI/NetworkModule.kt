@@ -9,6 +9,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.data.ContextCache
 import androidx.core.view.KeyEventDispatcher
 import com.example.mathongo_assingment.data.reciperepoImpl
+import com.example.mathongo_assingment.domain.Usecase.RecipeDetailUsecase
 import com.example.mathongo_assingment.domain.Usecase.SearchRecipeUsecase
 import com.example.mathongo_assingment.domain.Usecase.UseCase
 import com.example.mathongo_assingment.domain.Usecase.randomrecipeUsecase
@@ -97,7 +98,8 @@ fun providesokhttpclient(@ApplicationContext context: Context):OkHttpClient{
     fun provideUSecase(reciperepo: reciperepo): UseCase {
         return UseCase(
             randomrecipeUsecase(reciperepo),
-            searchRecipeUsecase = SearchRecipeUsecase(reciperepo)
+            SearchRecipeUsecase(reciperepo),
+            Recipedetailusecase = RecipeDetailUsecase(reciperepo)
         )
     }
 

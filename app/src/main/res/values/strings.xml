@@ -10,4 +10,8 @@
     <string name="Details_ReadyIn">Ready in </string>
     <string name="Details_Servings">Servings </string>
     <string name="Details_Price">Price/Serving </string>
+    <string name="Quick_Summary">Quick Summary </string>
+    <string name="Nutrion_Details">Nutrition </string>
+    <string name="Details_badforhealth">Bad for health nutrition </string>
+    <string name="Details_goodforhealth">Good for health nutrition </string>
 </resources>

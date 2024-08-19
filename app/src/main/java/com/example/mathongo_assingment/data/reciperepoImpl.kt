@@ -1,6 +1,7 @@
 package com.example.mathongo_assingment.data
 
 import android.util.Log
+import com.example.mathongo_assingment.domain.model.Recipe
 
 import com.example.mathongo_assingment.domain.model.RecipeResponse
 import com.example.mathongo_assingment.domain.model.SearchRecipe.searchresponse
@@ -10,6 +11,7 @@ import com.example.mathongo_assingment.util.NetworkResponse
 import kotlinx.coroutines.flow.flow
 
 import kotlinx.coroutines.flow.Flow
+
 import javax.inject.Inject
 
 class reciperepoImpl @Inject constructor(
@@ -49,4 +51,18 @@ class reciperepoImpl @Inject constructor(
             emit(NetworkResponse.Error(response.message()))
         }
     }
+
+    override suspend fun getrecipebyid(id: Int): Flow<NetworkResponse<Recipe>> = flow{
+        emit(NetworkResponse.Loading())
+
+        val response=recipeAPi.getrecipeinfo(id = id)
+
+        if(response.isSuccessful && response.body() != null){
+            emit(NetworkResponse.Success(response.body()!!))
+        }
+        else{
+            emit(NetworkResponse.Error(response.message()))
+        }
+    }
+
 }

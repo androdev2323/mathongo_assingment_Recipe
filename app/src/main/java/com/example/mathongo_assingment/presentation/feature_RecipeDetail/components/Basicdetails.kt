@@ -1,10 +1,16 @@
 package com.example.mathongo_assingment.presentation.feature_RecipeDetail.components
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -12,6 +18,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -23,17 +30,37 @@ import com.example.mathongo_assingment.ui.theme.boldtitle
 @Composable
 fun Basicdetails(modifier:Modifier,readyin:String,servings:String,price:String){
 Row(modifier = modifier.fillMaxWidth(),Arrangement.SpaceBetween) {
-    OutlinedCard(modifier.padding(15.dp).widthIn(min = 100.dp), shape = RoundedCornerShape(15.dp), ) {
+    OutlinedCard(
+        modifier
+            .padding(15.dp)
+            .widthIn(min = 100.dp), shape = RoundedCornerShape(15.dp), ) {
        Text(modifier = modifier.padding(10.dp), text = stringResource(id = R.string.Details_ReadyIn), textAlign = TextAlign.Center)
         Text(modifier = modifier.padding( 10.dp),textAlign = TextAlign.Center,text = readyin,style = boldtitle,color=MaterialTheme.colorScheme.primary)
     }
-    OutlinedCard(modifier.padding(15.dp).widthIn(min=100.dp), shape = RoundedCornerShape(15.dp), ) {
-        Text(modifier = modifier.padding(10.dp),text = stringResource(id = R.string.Details_Servings),textAlign = TextAlign.Center)
-        Text(modifier = modifier.padding(10.dp),text = servings, style = boldtitle,textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.primary)
+    OutlinedCard(
+        modifier
+            .padding(15.dp)
+            .widthIn(min = 100.dp)
+        , shape = RoundedCornerShape(15.dp), ) {
+        Column(modifier.width(IntrinsicSize.Max),horizontalAlignment = Alignment.CenterHorizontally){
+            Text(modifier = modifier.padding(start = 20.dp, top = 10.dp, bottom = 10.dp),text = stringResource(id = R.string.Details_Servings),textAlign = TextAlign.Center)
+            Text(modifier = modifier.padding(start = 20.dp, top = 10.dp, bottom = 10.dp),text = servings, style = boldtitle,textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.primary)
+        }
+
     }
-    OutlinedCard(modifier.padding(15.dp).widthIn(100.dp), shape = RoundedCornerShape(15.dp), ) {
-        Text(modifier = modifier.padding(10.dp),text = stringResource(id = R.string.Details_Price),textAlign = TextAlign.Center)
-        Text(modifier = modifier.padding(10.dp),text = price, style = boldtitle,textAlign = TextAlign.Center,color=MaterialTheme.colorScheme.primary)
+    OutlinedCard(
+        modifier
+            .padding(15.dp)
+            .widthIn(100.dp), shape = RoundedCornerShape(15.dp), ) {
+        Column(modifier.width(IntrinsicSize.Max), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                modifier = modifier.padding(start = 10.dp, top = 10.dp, bottom = 10.dp),
+                text = stringResource(id = R.string.Details_Price),
+                textAlign = TextAlign.Center
+            )
+            Text(modifier = modifier.padding(start = 20.dp, top = 10.dp, bottom = 10.dp),text = price, style = boldtitle,textAlign = TextAlign.Center,color=MaterialTheme.colorScheme.primary)
+
+        }
     }
 }
 }
