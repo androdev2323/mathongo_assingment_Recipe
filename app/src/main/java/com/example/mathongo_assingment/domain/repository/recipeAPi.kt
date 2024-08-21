@@ -19,8 +19,9 @@ interface recipeAPi {
 
     @GET("recipes/{id}/information")
     suspend fun getrecipeinfo(
-        @Query("apiKey") apiKey: String = BuildConfig.API_KEY,
         @Path("id") id: Int,
+        @Query("apiKey") apiKey: String = BuildConfig.API_KEY
+
 
         ): Response<Recipe>
 

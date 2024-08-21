@@ -2,6 +2,7 @@ package com.example.mathongo_assingment.presentation.feature_recipelist.componen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 
 
@@ -34,8 +35,8 @@ import com.example.mathongo_assingment.domain.model.Recipe
 import com.example.mathongo_assingment.ui.theme.boldtitle
 
 @Composable
-fun horizontalcard(modifier: Modifier=Modifier,recipe:Recipe){
-    Card(modifier = modifier.size(width = 250.dp, height = 200.dp), shape= RoundedCornerShape(15.dp), elevation =CardDefaults.cardElevation(4.dp)) {
+fun horizontalcard(modifier: Modifier=Modifier,recipe:Recipe,onclick:() -> Unit){
+    Card(modifier = modifier.size(width = 250.dp, height = 200.dp).clickable { onclick() }, shape= RoundedCornerShape(15.dp), elevation =CardDefaults.cardElevation(4.dp)) {
        Box( modifier){
             Image( painter = rememberAsyncImagePainter(model = "https://img.spoonacular.com/recipes/${recipe.id}-636x393.${recipe.imageType}") , contentDescription =null, contentScale = ContentScale.Crop, modifier = modifier.fillMaxSize()  )
 

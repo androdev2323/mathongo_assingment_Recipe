@@ -108,14 +108,18 @@ fun homeScreen(modifier: Modifier=Modifier, navController: NavController, shared
               ){
          items(state.randomlist){
              Log.d("viewmodel123",it.image.toString())
-             horizontalcard(recipe = it)
+             horizontalcard(recipe = it){
+                 navController.navigate("${Navscreen.DetailScreen.routes}/${it.id}")
+             }
          }
       }
       Spacer(modifier = modifier.height(15.dp))
       Text(text = stringResource(id = R.string.All_recipe), style = boldtitle)
       LazyColumn(modifier.padding(top = 5.dp), verticalArrangement = Arrangement.spacedBy(10.dp)){
              items(state.randomlist.reversed()){
-                 VerticalCard(recipe = it)
+                 VerticalCard(recipe = it){
+                     navController.navigate("${Navscreen.DetailScreen.routes}/${it.id}")
+                 }
              }
       }
 

@@ -39,12 +39,6 @@ import com.example.mathongo_assingment.presentation.feature_RecipeDetail.compone
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecipeDetail_Screem(viewmodel: RecipeDetailViewmodel = hiltViewModel()) {
-    Recipe_screen(viewmodel.Recipe.value!!.extendedIngredients)
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Recipe_screen(list: List<ExtendedIngredient>? = null) {
     var textview1 = remember {
         mutableStateOf(false)
     }
@@ -73,21 +67,21 @@ fun Recipe_screen(list: List<ExtendedIngredient>? = null) {
 
             Basicdetails(
                 modifier = Modifier.padding(it),
-                readyin = "1",
-                servings = "2",
-                price = "1"
+                readyin = viewmodel.Recipe.value?.readyInMinutes.toString(),
+                servings = viewmodel.Recipe.value?.servings.toString(),
+                price = viewmodel.Recipe.value?.pricePerServing.toString()
             )
             Spacer(modifier = Modifier.height(16.dp))
-            /*    LazyRow() {
-            items(list!!) {
-                Ingreidemtsdetails(it.image, it.name)
+               LazyRow() {
+            items(viewmodel.Ingredients.value) {
+                if (it != null) {
+                    Ingreidemtsdetails(it.image, it.name)
+                }
             }
-        } */
+        }
             Spacer(modifier = Modifier.height(16.dp))
 
-            TextContent(title = R.string.Quick_Summary, Content ="" , isexpanded = true) {
-
-            }
+            TextContent(title = R.string.Quick_Summary, Content ="Lorealipsum" , isexpanded = true, onexpand = {Unit})
             Spacer(modifier = Modifier.height(16.dp))
             TextContent(
                 title = R.string.Details_goodforhealth,
@@ -100,20 +94,27 @@ fun Recipe_screen(list: List<ExtendedIngredient>? = null) {
             Spacer(modifier = Modifier.height(16.dp))
             TextContent(
                 title = R.string.Details_badforhealth,
-                Content = "lorem ipsum",
+                Content = "Loren Loren Loren Loren Loren Loren Loren Loren Loren Loren",
                 isexpanded = textview3.value,
                 onexpand = {textview3.value = !textview3.value}
 
             )
 
+
         }
 
     }
+
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun Recipe_screen(list: List<ExtendedIngredient>? = null) {
 }
 
 
 @Preview
 @Composable
 private fun RecipeDetilpreview() {
-    Recipe_screen(list = null)
+
 }

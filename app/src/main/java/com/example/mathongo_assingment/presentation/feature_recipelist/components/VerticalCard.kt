@@ -2,6 +2,7 @@ package com.example.mathongo_assingment.presentation.feature_recipelist.componen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 
@@ -36,8 +37,8 @@ import com.example.mathongo_assingment.ui.theme.boldtitle
 
 
 @Composable
-fun VerticalCard(modifier: Modifier = Modifier, recipe: Recipe) {
-    Card(shape = RoundedCornerShape(15.dp), elevation = CardDefaults.cardElevation(5.dp), border = CardDefaults.outlinedCardBorder(), colors = CardDefaults.cardColors( containerColor = MaterialTheme.colorScheme.background)) {
+fun VerticalCard(modifier: Modifier = Modifier, recipe: Recipe,onClick:() -> Unit) {
+    Card(modifier=modifier.clickable { onClick() },shape = RoundedCornerShape(15.dp), elevation = CardDefaults.cardElevation(5.dp), border = CardDefaults.outlinedCardBorder(), colors = CardDefaults.cardColors( containerColor = MaterialTheme.colorScheme.background)) {
         Row(
             modifier = modifier
                 .fillMaxWidth()
