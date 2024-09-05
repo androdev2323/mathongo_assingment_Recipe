@@ -1,14 +1,18 @@
 package com.example.mathongo_assingment.presentation.feature_search
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mathongo_assingment.domain.Usecase.UseCase
+import com.example.mathongo_assingment.presentation.feature_search.components.bottomsheetcontent
 import com.example.mathongo_assingment.util.NetworkResponse
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -59,7 +63,11 @@ fun action(events: SearchScreenEvents){
 
             }
         }
-        is SearchScreenEvents.onrecipeclicked -> {}
+        is SearchScreenEvents.onrecipeclicked -> {
+            getclickedrecipe(events.id)
+            _Searchresult.value=_Searchresult.value.copy(sheetenabled = true)
+
+        }
     }
 }
 fun search(query:String){
@@ -80,6 +88,17 @@ fun search(query:String){
             }
 
         }
+    fun getclickedrecipe(id:Int){
+        viewModelScope.launch {
+            usecase.Recipedetailusecase(id).collect(){
+                when(it){
+                    is NetworkResponse.Error ->{}
+                    is NetworkResponse.Loading -> {}
+                    is NetworkResponse.Success -> _Searchresult.value=_Searchresult.value.copy(clickedrecipe = it.data)
+                }
+            }
+        }
+    }
 
 
     }

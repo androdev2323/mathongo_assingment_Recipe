@@ -1,6 +1,8 @@
 package com.example.mathongo_assingment.presentation.feature_RecipeDetail
 
+import android.util.Log
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
@@ -17,8 +19,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecipeDetailViewmodel @Inject constructor(private val useCase: UseCase,savedStateHandle: SavedStateHandle):ViewModel(){
-    private var _Recipe:MutableState<Recipe?> = mutableStateOf(null)
-    val Recipe=_Recipe
+ private var _Recipe:MutableState<Recipe?> = mutableStateOf(null)
+    val Recipe:State<Recipe?> = _Recipe
     private var _Ingredients:MutableState<List<ExtendedIngredient?>> = mutableStateOf(emptyList())
     val Ingredients=_Ingredients
     private val id:Int = checkNotNull(savedStateHandle["id"])
@@ -36,7 +38,8 @@ init {
                     is NetworkResponse.Error -> Unit
                     is NetworkResponse.Loading -> Unit
                     is NetworkResponse.Success -> {
-                         _Recipe . value = it . data
+                         _Recipe.value = it.data
+
                         _Ingredients.value=it.data.extendedIngredients
 
                     }

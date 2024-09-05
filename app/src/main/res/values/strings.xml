@@ -14,4 +14,6 @@
     <string name="Nutrion_Details">Nutrition </string>
     <string name="Details_badforhealth">Bad for health nutrition </string>
     <string name="Details_goodforhealth">Good for health nutrition </string>
+    <string name="Bs_instructions">Instructions" </string>
+
 </resources>
