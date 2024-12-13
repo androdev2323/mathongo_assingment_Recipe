@@ -7,6 +7,7 @@ plugins {
     kotlin("kapt")
     id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 val localPropertiesFile = rootProject.file("local.properties")
 val localProperties =  Properties()
@@ -81,8 +82,8 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("com.google.dagger:hilt-android:2.44")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    implementation("com.google.dagger:hilt-android:2.56.2")
+    kapt("com.google.dagger:hilt-android-compiler:2.56.2")
     implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
     implementation ("androidx.navigation:navigation-compose:2.7.7")
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
@@ -98,6 +99,7 @@ dependencies {
     implementation("androidx.compose.animation:animation:1.6.8")
 
     implementation("androidx.compose.foundation:foundation:$foundationCompose")
+
 
 
 

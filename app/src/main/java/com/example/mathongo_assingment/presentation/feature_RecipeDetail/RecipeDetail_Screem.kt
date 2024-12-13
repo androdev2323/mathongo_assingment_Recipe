@@ -45,6 +45,7 @@ import com.example.mathongo_assingment.presentation.feature_RecipeDetail.compone
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.ExpandedToolbar
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.Ingreidemtsdetails
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.TextContent
+
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.collapsedToolbar
 import com.example.mathongo_assingment.ui.theme.boldtitle
 import com.example.mathongo_assingment.util.Constant
@@ -125,7 +126,7 @@ fun RecipeDetail_Screem(viewmodel: RecipeDetailViewmodel = hiltViewModel()) {
                     }
                     Spacer(modifier = Modifier.height(16.dp))
 
-                    TextContent(
+                   TextContent(
                         title = R.string.Quick_Summary,
                         Content = "Lorealipsum",
                         isexpanded = true,

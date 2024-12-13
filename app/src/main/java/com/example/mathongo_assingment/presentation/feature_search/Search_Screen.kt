@@ -39,8 +39,9 @@ import androidx.compose.ui.text.toLowerCase
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.mathongo_assingment.R
+import com.example.mathongo_assingment.presentation.feature_search.components.BottomSheetContent
 import com.example.mathongo_assingment.presentation.feature_search.components.SearchBar
-import com.example.mathongo_assingment.presentation.feature_search.components.bottomsheetcontent
+
 import com.example.mathongo_assingment.ui.theme.boldtitle
 import kotlinx.coroutines.launch
 import okhttp3.internal.notify
@@ -71,7 +72,7 @@ fun Search_Screen(
         content = { Search_Screen_Content(Modifier.padding(it),viewmodel)
 
             if (viewmodel.searchresult.value.sheetenabled) {
-                bottomsheetcontent(modifier = Modifier,state=sheetState, ondismiss = {viewmodel.searchresult.value=  viewmodel.searchresult.value.copy(sheetenabled = false)})
+                BottomSheetContent(modifier = Modifier,state=sheetState, ondismiss = {viewmodel.searchresult.value=  viewmodel.searchresult.value.copy(sheetenabled = false)})
             }}
     )
 

@@ -24,7 +24,7 @@ fun Apphost(){
     SharedTransitionLayout(modifier = Modifier.fillMaxSize()){
 
             val navController = rememberNavController()
-            NavHost(navController = navController, startDestination = Navscreen.Homescreen.routes) {
+            NavHost(navController = navController, startDestination = Navscreen.Searchscreen.routes) {
                 composable(Navscreen.Homescreen.routes) {
 
 
