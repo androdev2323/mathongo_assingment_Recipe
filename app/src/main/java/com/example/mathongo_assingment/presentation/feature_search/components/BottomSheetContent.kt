@@ -7,6 +7,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -16,6 +17,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.KeyboardArrowDown
@@ -40,23 +43,35 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import coil.compose.rememberAsyncImagePainter
 import com.example.mathongo_assingment.R
+import com.example.mathongo_assingment.domain.model.Recipe
 import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.Basicdetails
+import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.Ingreidemtsdetails
+import com.example.mathongo_assingment.presentation.feature_RecipeDetail.components.TextContent
 import kotlinx.coroutines.flow.MutableStateFlow
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BottomSheetContent(modifier: Modifier = Modifier, state: SheetState, ondismiss: () -> Unit) {
+fun BottomSheetContent(
+    modifier: Modifier = Modifier,
+    state: SheetState,
+    ondismiss: () -> Unit,
+    recipe: Recipe
+) {
     ModalBottomSheet(onDismissRequest = { ondismiss() }, sheetState = state) {
         var states by remember {
             mutableStateOf(ContentState.BasicDetails)
         }
 
-        LazyColumn(modifier = Modifier
-            .padding(30.dp)
-            .fillMaxWidth()) {
+        LazyColumn(
+            modifier = Modifier
+                .padding(30.dp)
+                .fillMaxWidth()
+        ) {
 
             item {
                 Row(
@@ -64,20 +79,22 @@ fun BottomSheetContent(modifier: Modifier = Modifier, state: SheetState, ondismi
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text("Title of Recipe")
+                    Text(text = recipe.title, style = MaterialTheme.typography.titleLarge)
                     IconButton({}) {
-                        Icon(Icons.Filled.Favorite, "favourite icon")
+                        Icon(Icons.Filled.Favorite, "favourite icon", tint = MaterialTheme.colorScheme.primaryContainer)
                     }
                 }
             }
 
             item {
                 Image(
-                    painter = painterResource(R.drawable.ic_launcher_background),
-                    contentDescription = "",
-                    modifier = Modifier
-                        .padding(10.dp)
+                    painter = rememberAsyncImagePainter(
+                        model = recipe.image,
+                        contentScale = ContentScale.Crop
+                    ), modifier = Modifier
                         .fillMaxWidth()
+                        .height(300.dp),
+                    contentDescription = "Image of Recipe"
                 )
                 Spacer(Modifier.height(16.dp))
 
@@ -107,7 +124,16 @@ fun BottomSheetContent(modifier: Modifier = Modifier, state: SheetState, ondismi
                         onClick = { states = ContentState.Full_Recipe },
                         buttonTitle = "Get Full Recipe"
                     ) {
-                        Text("Ingridients", color = MaterialTheme.colorScheme.onSurface)
+                        LazyRow(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                            horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        ) {
+                            items(recipe.extendedIngredients) { ingredients ->
+                                Ingreidemtsdetails(url = ingredients.image, text = ingredients.name)
+                            }
+                        }
 
                     }
                 }
@@ -133,7 +159,10 @@ fun BottomSheetContent(modifier: Modifier = Modifier, state: SheetState, ondismi
                         onClick = { states = ContentState.SimillarRecipe },
                         buttonTitle = "Get Simillar Recipe"
                     ) {
-                        Text("Full Recipe", color = MaterialTheme.colorScheme.onSurface)
+                       Column {
+                           TextContent(title = R.string.summary , Content = recipe.summary, isexpanded = true)
+                           TextContent(title = R.string.Title_Instuctions , Content = recipe.instructions, isexpanded = true)
+                       }
 
                     }
                 }

@@ -71,8 +71,8 @@ fun Search_Screen(
 
         content = { Search_Screen_Content(Modifier.padding(it),viewmodel)
 
-            if (viewmodel.searchresult.value.sheetenabled) {
-                BottomSheetContent(modifier = Modifier,state=sheetState, ondismiss = {viewmodel.searchresult.value=  viewmodel.searchresult.value.copy(sheetenabled = false)})
+            if (viewmodel.searchresult.value.sheetenabled && viewmodel.searchresult.value.clickedrecipe != null) {
+                BottomSheetContent(modifier = Modifier,state=sheetState, ondismiss = {viewmodel.searchresult.value=  viewmodel.searchresult.value.copy(sheetenabled = false)}, recipe = viewmodel.searchresult.value.clickedrecipe!!)
             }}
     )
 

@@ -9,9 +9,14 @@ plugins {
     id("com.google.dagger.hilt.android")
     id("org.jetbrains.kotlin.plugin.compose")
 }
-val localPropertiesFile = rootProject.file("local.properties")
-val localProperties =  Properties()
-localProperties.load(FileInputStream(localPropertiesFile))
+val localprops = Properties()
+val localPropertiesFile = File(rootProject.rootDir,"app.properties")
+if(localPropertiesFile.exists() && localPropertiesFile.isFile){
+    localPropertiesFile.inputStream().use {
+        localprops.load(it)
+    }
+}
+
 
 android {
     namespace = "com.example.mathongo_assingment"
@@ -20,7 +25,7 @@ android {
     defaultConfig {
         applicationId = "com.example.mathongo_assingment"
         minSdk = 24
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -28,7 +33,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String","API_KEY","\"${localProperties.getProperty("API_KEY")}\"")
+        buildConfigField("String","API_KEY",localprops.getProperty("API_KEY"))
     }
 
     buildTypes {
@@ -38,7 +43,13 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+
         }
+        debug {
+
+            buildConfigField("String","API_KEY" , localprops.getProperty("API_KEY"))
+        }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -52,6 +63,8 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig=true
+
 
     }
     composeOptions {

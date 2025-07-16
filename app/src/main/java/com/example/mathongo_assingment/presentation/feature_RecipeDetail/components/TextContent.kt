@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
@@ -40,6 +41,8 @@ fun TextContent(
         modifier = Modifier
             .padding(10.dp)
             .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.background)
+            .clip(RoundedCornerShape(6.dp))
     ) {
         Row(
             modifier = Modifier
@@ -55,7 +58,7 @@ fun TextContent(
                     "",
                     tint = MaterialTheme.colorScheme.onPrimary,
                     modifier = Modifier
-                        .size(40.dp)
+                        .size(20.dp)
                         .clip(
                             CircleShape
                         )
@@ -65,7 +68,7 @@ fun TextContent(
             }
 
         }
-        AnimatedVisibility(isexpanded) {
+        AnimatedVisibility(size) {
             Text(text = Content)
         }
     }

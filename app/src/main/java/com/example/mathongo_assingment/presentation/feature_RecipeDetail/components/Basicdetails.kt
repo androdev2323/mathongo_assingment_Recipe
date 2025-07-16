@@ -21,46 +21,87 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.min
 import com.example.mathongo_assingment.R
 import com.example.mathongo_assingment.ui.theme.boldtitle
 
 @Composable
-fun Basicdetails(modifier:Modifier,readyin:String,servings:String,price:String){
-Row(modifier = modifier.fillMaxWidth(),Arrangement.SpaceBetween) {
-    OutlinedCard(
-        modifier
-            .padding(15.dp)
-            .widthIn(min = 100.dp), shape = RoundedCornerShape(15.dp), ) {
-       Text(modifier = modifier.padding(10.dp), text = stringResource(id = R.string.Details_ReadyIn), textAlign = TextAlign.Center)
-        Text(modifier = modifier.padding( 10.dp),textAlign = TextAlign.Center,text = readyin,style = boldtitle,color=MaterialTheme.colorScheme.primary)
-    }
-    OutlinedCard(
-        modifier
-            .padding(15.dp)
-            .widthIn(min = 100.dp)
-        , shape = RoundedCornerShape(15.dp), ) {
-        Column(modifier.width(IntrinsicSize.Max),horizontalAlignment = Alignment.CenterHorizontally){
-            Text(modifier = modifier.padding(start = 20.dp, top = 10.dp, bottom = 10.dp),text = stringResource(id = R.string.Details_Servings),textAlign = TextAlign.Center)
-            Text(modifier = modifier.padding(start = 20.dp, top = 10.dp, bottom = 10.dp),text = servings, style = boldtitle,textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.primary)
+fun Basicdetails(modifier: Modifier, readyin: String, servings: String, price: String) {
+    Row(modifier = modifier.fillMaxWidth().padding(5.dp), Arrangement.SpaceBetween) {
+        OutlinedCard(
+            modifier
+                .padding(start = 10.dp)
+                .widthIn(min = 100.dp, max = 100.dp),
+            colors = CardDefaults.cardColors(contentColor = MaterialTheme.colorScheme.surfaceVariant),
+            shape = RoundedCornerShape(15.dp),
+        ) {
+            Column(modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    modifier = modifier.padding(top = 10.dp, bottom = 10.dp),
+                    text = stringResource(id = R.string.Details_ReadyIn),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    style = MaterialTheme.typography.titleSmall.copy(fontWeight = FontWeight.Bold),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    modifier = modifier.padding(top = 10.dp, bottom = 10.dp),
+                    text = readyin,
+                    style = boldtitle,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.secondary
+                )
+            }
         }
-
-    }
-    OutlinedCard(
-        modifier
-            .padding(15.dp)
-            .widthIn(100.dp), shape = RoundedCornerShape(15.dp), ) {
-        Column(modifier.width(IntrinsicSize.Max), horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                modifier = modifier.padding(start = 10.dp, top = 10.dp, bottom = 10.dp),
-                text = stringResource(id = R.string.Details_Price),
-                textAlign = TextAlign.Center
-            )
-            Text(modifier = modifier.padding(start = 20.dp, top = 10.dp, bottom = 10.dp),text = price, style = boldtitle,textAlign = TextAlign.Center,color=MaterialTheme.colorScheme.primary)
+        OutlinedCard(
+            modifier
+                .padding(start=10.dp)
+                .widthIn(min = 100.dp, max = 100.dp),
+            shape = RoundedCornerShape(15.dp),
+        ) {
+            Column(modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+                Text(
+                    modifier = modifier.padding(top = 10.dp, bottom = 10.dp),
+                    text = stringResource(id = R.string.Details_Servings),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    modifier = modifier.padding(top = 10.dp, bottom = 10.dp),
+                    text = servings,
+                    style = boldtitle,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.primary
+                )
+            }
 
         }
+        OutlinedCard(
+            modifier
+                .padding(start =10.dp)
+                .widthIn(min = 100.dp, max = 150.dp),
+            shape = RoundedCornerShape(15.dp),
+        ) {
+            Column(
+                modifier.width(IntrinsicSize.Max),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    modifier = modifier.padding( start = 5.dp, top = 10.dp, bottom = 10.dp, end = 5.dp),
+                    text = stringResource(id = R.string.Details_Price),
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    modifier = modifier.padding( top = 10.dp, bottom = 10.dp),
+                    text = price,
+                    style = boldtitle,
+                    textAlign = TextAlign.Center,
+                    color = MaterialTheme.colorScheme.primary
+                )
+
+            }
+        }
     }
-}
 }
